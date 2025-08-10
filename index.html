@@ -13,18 +13,15 @@
       align-items: center;
       height: 100vh;
     }
+    a, img {
+      -webkit-tap-highlight-color: transparent; /* Remove blue highlight on tap */
+      outline: none;
+    }
     img {
-      max-width: 100%;
-      height: auto;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover; /* Fill screen without distortion */
       display: block;
-      opacity: 1;
-      transition: opacity 1s ease-in-out;
-    }
-    .fade-out {
-      opacity: 0;
-    }
-    .fade-in {
-      opacity: 1;
     }
   </style>
 </head>
@@ -34,22 +31,12 @@
 
   <script>
     setTimeout(function() {
-      const splash = document.getElementById("splash");
-
-      // Fade out first image
-      splash.classList.add("fade-out");
-
-      // After fade out, replace with second image and fade it in
-      setTimeout(function() {
-        document.body.innerHTML = `
-          <a href="role_identifier.html">
-            <img id="secondImage" src="splash_screen_2.png" alt="Splash Screen 2" class="fade-out">
-          </a>
-        `;
-        const secondImage = document.getElementById("secondImage");
-        setTimeout(() => secondImage.classList.remove("fade-out"), 50); // trigger fade-in
-      }, 1000); // matches fade-out duration
-    }, 4000); // Show first image for 4 seconds before fade
+      document.body.innerHTML = `
+        <a href="role_identifier.html">
+          <img src="splash_screen_2.png" alt="Splash Screen 2">
+        </a>
+      `;
+    }, 4000); // 4 seconds
   </script>
 </body>
 </html>
