@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Splash Screen</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+    .fade-out {
+      opacity: 0;
+    }
+    .fade-in {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- First splash image -->
+  <img id="splash" src="splash_screen_1.png" alt="Splash Screen 1">
+
+  <script>
+    setTimeout(function() {
+      const splash = document.getElementById("splash");
+
+      // Fade out first image
+      splash.classList.add("fade-out");
+
+      // After fade out, replace with second image and fade it in
+      setTimeout(function() {
+        document.body.innerHTML = `
+          <a href="role_identifier.html">
+            <img id="secondImage" src="splash_screen_2.png" alt="Splash Screen 2" class="fade-out">
+          </a>
+        `;
+        const secondImage = document.getElementById("secondImage");
+        setTimeout(() => secondImage.classList.remove("fade-out"), 50); // trigger fade-in
+      }, 1000); // matches fade-out duration
+    }, 4000); // Show first image for 4 seconds before fade
+  </script>
+</body>
+</html>
